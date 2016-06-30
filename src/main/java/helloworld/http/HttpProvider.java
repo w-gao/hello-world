@@ -2,6 +2,8 @@ package main.java.helloworld.http;
 
 import com.sun.net.httpserver.HttpServer;
 import com.sun.net.httpserver.spi.HttpServerProvider;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.net.InetSocketAddress;
 
@@ -12,6 +14,8 @@ import java.net.InetSocketAddress;
  * @version 1.0
  */
 public class HttpProvider {
+
+    private static Logger Log = LogManager.getLogger(HttpProvider.class);
 
     private int _port;
     private int _maxConn;
@@ -24,7 +28,7 @@ public class HttpProvider {
     }
 
     public void startService(){
-        System.out.println("Port: " + _port);
+        Log.debug("Port: " + _port);
         try{
             HttpServerProvider provider = HttpServerProvider.provider();
             this.httpServer = provider.createHttpServer(new InetSocketAddress(_port), _maxConn);
@@ -32,7 +36,7 @@ public class HttpProvider {
             this.httpServer.setExecutor(null);
             this.httpServer.start();
         }catch (Exception ex){
-            System.out.println("Error!! Perhaps you are using that port?");
+            Log.error("Error!! Perhaps you are using that port?");
             System.exit(-1);
         }
     }

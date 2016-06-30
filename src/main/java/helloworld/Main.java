@@ -2,6 +2,8 @@ package main.java.helloworld;
 
 import main.java.helloworld.http.HttpProvider;
 import main.java.helloworld.http.Route;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -14,28 +16,31 @@ import java.io.InputStreamReader;
  */
 public class Main {
 
+    private static Logger Log = LogManager.getLogger(Main.class);
+
     private static final int HTTP_PORT = 8080;
     private static final int HTTP_MAX_CONN = 100;
 
     public static void main(String[] args) {
 
-        System.out.println("Hello World!");
+        Log.info("Hello World!");
+
 
         initHttpServer();
     }
 
     private static void initHttpServer() {
 
-        System.out.println("Starting http server...");
+        Log.info("Starting http server...");
 
         HttpProvider provider = new HttpProvider(HTTP_PORT, HTTP_MAX_CONN);
         provider.startService();
 
         new Route();
 
-        System.out.println("Done.");
+        Log.info("Done.");
 
-        System.out.println("Press Enter to Stop...");
+        Log.info("Press Enter to Stop...");
 
         // -----------------------------------------
         try {
@@ -46,7 +51,7 @@ public class Main {
         }
         // -----------------------------------------
 
-        System.out.println("Stopping http server...");
+        Log.info("Stopping http server...");
         provider.stopHttpServer();
     }
 }

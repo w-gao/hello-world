@@ -1,6 +1,9 @@
 package main.java.helloworld.http.api;
 
 import com.sun.net.httpserver.HttpExchange;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,6 +20,8 @@ import java.util.Map;
  * @version 1.0
  */
 public class HttpRequest implements Request {
+
+    private static Logger Log = LogManager.getLogger(HttpRequest.class);
 
     private HttpExchange httpExchange;
 
@@ -59,7 +64,7 @@ public class HttpRequest implements Request {
         String query = getRequestURI().getQuery();
 
         if(query == null){
-            System.out.println("Param is null");
+            Log.warn("Param is null");
             return;
         }
 

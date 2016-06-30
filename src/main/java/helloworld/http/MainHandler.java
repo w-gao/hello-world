@@ -4,6 +4,8 @@ package main.java.helloworld.http;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import main.java.helloworld.http.api.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
@@ -17,12 +19,14 @@ import java.io.IOException;
  */
 class MainHandler implements HttpHandler {
 
+    private static Logger Log = LogManager.getLogger(MainHandler.class);
+
     public void handle(HttpExchange httpExchange) throws IOException {
         String key = httpExchange.getRequestURI().getPath();
 
         if(key.equals("/favicon.ico")) return;      // todo
 
-        System.out.println("Request: " + key + " - From: " + httpExchange.getRemoteAddress().getHostName());
+        Log.info("Request: " + key + " - From: " + httpExchange.getRemoteAddress().getHostName());
 
         // TODO PERMISSIONS!!
 

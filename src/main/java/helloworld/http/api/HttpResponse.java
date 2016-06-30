@@ -1,6 +1,9 @@
 package main.java.helloworld.http.api;
 
 import com.sun.net.httpserver.HttpExchange;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -11,6 +14,8 @@ import java.io.OutputStream;
  * @version 1.0
  */
 public class HttpResponse implements Response {
+
+    private static Logger Log = LogManager.getLogger(HttpResponse.class);
 
     private HttpExchange httpExchange;
 
@@ -25,7 +30,7 @@ public class HttpResponse implements Response {
 
     @Override
     public void write(String result, int statusCode) {
-        System.out.println("Return: '" + result + "'");
+        Log.info("Return: '" + result + "'");
 
         try {
             httpExchange.sendResponseHeaders(200, result.length());
@@ -34,7 +39,8 @@ public class HttpResponse implements Response {
             out.flush();
             httpExchange.close();
         } catch (IOException e) {
-            System.out.println("An error occurred: " + e.getMessage());
+
+            Log.error("An error occurred: " + e.getMessage());
             //e.printStackTrace();
         }
     }

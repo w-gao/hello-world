@@ -19,15 +19,14 @@ public class Lang {
 
     private static Logger Log = LogManager.getLogger(Lang.class);
 
-    private static Map<String, String> langs = new HashMap<>();
+    private static final String LANG_PATH = "lang/en.ini";
+
+    private static Map<String, String> languages = new HashMap<>();
 
     public Lang() {
 
-        String path = "lang/en.ini";
-
-        Log.debug("Loading Language from: " + path + "...");
-
-        InputStream stream = this.getClass().getClassLoader().getResourceAsStream(path);
+        //Log.debug("Loading Language from: " + LANG_PATH + "...");
+        InputStream stream = this.getClass().getClassLoader().getResourceAsStream(LANG_PATH);
 
         try {
             String content = FileUtil.readFile(stream);
@@ -59,7 +58,8 @@ public class Lang {
                 }
                 lang.put(key, value);
             }
-            langs = lang;
+            languages = lang;
+
         } catch (IOException e) {
             Log.warn("Error while loading language: " + e.getMessage());
         }
@@ -67,8 +67,8 @@ public class Lang {
 
     public static String get(String key) {
 
-        if (langs.containsKey(key)){
-            return langs.get(key);
+        if (languages.containsKey(key)){
+            return languages.get(key);
         } else {
             return key;
         }
@@ -76,8 +76,8 @@ public class Lang {
 
     public static String get(String key, Object...args){
 
-        if (langs.containsKey(key)){
-            return String.format(langs.get(key), args);
+        if (languages.containsKey(key)){
+            return String.format(languages.get(key), args);
         } else {
             return key;
         }

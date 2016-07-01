@@ -16,7 +16,7 @@ public class FileUtil {
             throw new IllegalArgumentException("content must not be null");
         }
         if (!file.exists()) {
-            file.createNewFile();
+            if(!file.createNewFile()) System.out.println("O.o");
         }
         FileOutputStream stream = new FileOutputStream(file);
         byte[] buffer = new byte[1024];

@@ -1,6 +1,7 @@
-package main.java.helloworld.http.api;
+package main.java.helloworld.http.impl;
 
 import com.sun.net.httpserver.HttpExchange;
+import main.java.helloworld.http.Request;
 import main.java.helloworld.lang.Lang;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,7 +20,7 @@ import java.util.Map;
  * @author w-gao Copyright (c) 2016
  * @version 1.0
  */
-public class HttpRequest implements Request {
+class HttpRequest implements Request {
 
     private static Logger Log = LogManager.getLogger(HttpRequest.class);
 
@@ -31,7 +32,7 @@ public class HttpRequest implements Request {
 
     private Map<String, String> requestBody = new HashMap<>();
 
-    public HttpRequest(HttpExchange httpExchange) {
+    HttpRequest(HttpExchange httpExchange) {
         this.httpExchange = httpExchange;
     }
 
@@ -49,6 +50,8 @@ public class HttpRequest implements Request {
     public void initHeader() {
 
         for (String s : httpExchange.getRequestHeaders().keySet()) {
+
+            Log.debug(s + "=" + httpExchange.getRequestHeaders().get(s));
             headers.put(s, httpExchange.getRequestHeaders().get(s));
         }
     }

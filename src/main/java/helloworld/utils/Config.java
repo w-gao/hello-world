@@ -49,15 +49,8 @@ public class Config {
         }
     }
 
-    public static String getProperty(String key, String defaultValue){
-
-        if(properties == null) return "";
-
-        return properties.getProperty(key, defaultValue);
-    }
-
     public static boolean getPropertyBoolean(String key, Object defaultValue) {
-        Object value = properties.getProperty(key, defaultValue.toString());
+        Object value = getProperty(key, defaultValue.toString());
 
         switch (String.valueOf(value).toLowerCase()) {
             case "on":
@@ -71,9 +64,21 @@ public class Config {
 
     public static int getPropertyInt(String key, Integer defaultValue) {
         try{
-            return Integer.parseInt(properties.getProperty(key));
+            return Integer.parseInt(getProperty(key));
         }catch (NumberFormatException ex) {
             return defaultValue;
         }
+    }
+
+    private static String getProperty(String key){
+
+        return getProperty(key, "");
+    }
+
+    private static String getProperty(String key, String defaultValue){
+
+        if(properties == null) return "";
+
+        return properties.getProperty(key, defaultValue);
     }
 }

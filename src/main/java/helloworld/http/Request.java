@@ -1,4 +1,4 @@
-package main.java.helloworld.http.api;
+package main.java.helloworld.http;
 
 import java.net.URI;
 import java.util.List;
@@ -30,6 +30,4 @@ public interface Request {
     void initRequestBody();
 
     String getRequestBody(String key);
-
-
 }

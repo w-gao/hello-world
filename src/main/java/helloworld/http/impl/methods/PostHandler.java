@@ -1,8 +1,8 @@
-package main.java.helloworld.http.api.methods;
+package main.java.helloworld.http.impl.methods;
 
-import main.java.helloworld.http.api.Handler;
-import main.java.helloworld.http.api.Request;
-import main.java.helloworld.http.api.Response;
+import main.java.helloworld.http.Handler;
+import main.java.helloworld.http.Request;
+import main.java.helloworld.http.Response;
 import main.java.helloworld.http.api.Result;
 import main.java.helloworld.lang.Lang;
 
@@ -12,16 +12,18 @@ import main.java.helloworld.lang.Lang;
  * @author w-gao Copyright (c) 2016
  * @version 1.0
  */
-public abstract class GetHandler implements Handler {
+public abstract class PostHandler implements Handler {
 
     @Override
     public void handle(Request request, Response response) {
 
         try {
             request.initHeader();
-            request.initParam();
+            //  request.initParam();        // does post use params?
 
-            get(request, response);
+            request.initRequestBody();
+
+            post(request, response);
 
         } catch (Exception ex) {
             response.write(new Result(500, Lang.get("GENERIC_ERROR_OCCURRED")));
@@ -30,5 +32,5 @@ public abstract class GetHandler implements Handler {
         }
     }
 
-    protected abstract void get(Request req, Response res);
+    protected abstract void post(Request req, Response res);
 }

@@ -9,7 +9,7 @@ package main.java.helloworld.http.api;
 public class Result {
 
     private int code = 200;
-    String message;
+    private String message;
 
     static final long time = System.currentTimeMillis();
 
@@ -20,5 +20,13 @@ public class Result {
     public Result(int code, String message) {
         this.code = code;
         this.message = message;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }

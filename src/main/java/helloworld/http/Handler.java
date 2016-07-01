@@ -1,4 +1,4 @@
-package main.java.helloworld.http.api;
+package main.java.helloworld.http;
 
 /**
  * hello-world

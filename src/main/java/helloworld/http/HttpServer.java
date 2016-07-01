@@ -26,9 +26,7 @@ public class HttpServer {
 
         new Route();
 
-        Log.info(Lang.get("HTTP_SRV_STARTED"));
-
-        Log.info(Lang.get("HTTP_STOP_NOTICE"));
+        Log.info(Lang.get("HTTP_SRV_STARTED") + " " + Lang.get("HTTP_STOP_NOTICE"));
 
         // -----------------------------------------
         try {

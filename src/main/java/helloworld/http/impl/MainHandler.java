@@ -1,8 +1,9 @@
-package main.java.helloworld.http;
+package main.java.helloworld.http.impl;
 
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import main.java.helloworld.http.Handler;
 import main.java.helloworld.http.api.*;
 import main.java.helloworld.lang.Lang;
 import org.apache.logging.log4j.LogManager;
@@ -18,14 +19,14 @@ import java.io.IOException;
  * @author w-gao Copyright (c) 2016
  * @version 1.0
  */
-class MainHandler implements HttpHandler {
+public class MainHandler implements HttpHandler {
 
     private static Logger Log = LogManager.getLogger(MainHandler.class);
 
     public void handle(HttpExchange httpExchange) throws IOException {
         String key = httpExchange.getRequestURI().getPath();
 
-        if (key.equals("/favicon.ico")) return;      // todo
+        if (key.equals("/favicon.ico")) return;
 
         Log.info(Lang.get("HTTP_SRV_REQUEST", key, httpExchange.getRemoteAddress().getHostName()));
 

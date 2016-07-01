@@ -116,7 +116,7 @@ public class HttpRequest implements Request {
             String value = str.split("=")[1];
 
             map.put(key, value);
-            Log.debug(key + ": " + value);
+            //Log.info(key + ": " + value);
         }
         return map;
     }

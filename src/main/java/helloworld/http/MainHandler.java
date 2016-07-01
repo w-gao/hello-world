@@ -33,7 +33,9 @@ class MainHandler implements HttpHandler {
         HttpRequest request = new HttpRequest(httpExchange);
         HttpResponse response = new HttpResponse(httpExchange);
 
-        Handler handler = Route.get(key);
+        Handler handler = RouteAPI.get(request.getMethod(), key);
+
+        Log.info(request.getMethod());
 
         if(handler == null){
             response.write("404 - Not found");

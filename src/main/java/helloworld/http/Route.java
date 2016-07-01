@@ -1,11 +1,11 @@
 package main.java.helloworld.http;
 
-import main.java.helloworld.http.api.HttpHandler;
-import main.java.helloworld.http.handlers.HelloHandler;
-import main.java.helloworld.http.handlers.TestHandler;
+import main.java.helloworld.http.handlers.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.util.HashMap;
-import java.util.Map;
+import static main.java.helloworld.http.api.RouteAPI.get;
+import static main.java.helloworld.http.api.RouteAPI.post;
 
 /**
  * hello-world
@@ -15,21 +15,20 @@ import java.util.Map;
  */
 public class Route {
 
-    private static Map<String, HttpHandler> routes = new HashMap<>();
+    private static Logger Log = LogManager.getLogger(Route.class);
 
     public Route() {
-        // init
-        add("/hello", new HelloHandler());
-        add("/test", new TestHandler());
-    }
 
-    private void add(String key, HttpHandler handler){
-        routes.put(key, handler);
-    }
+        try {
+            // init
+            get("/hello", new HelloHandler());
+            get("/test", new TestHandler());
 
-    static HttpHandler get(String key) {
-        return routes.get(key);
-    }
+            post("/post", new PostTestHandler());
+        }catch (Exception ex){
 
+            Log.error("Error!" + ex.getMessage());
+        }
+    }
 
 }

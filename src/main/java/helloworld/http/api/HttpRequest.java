@@ -4,10 +4,7 @@ import com.sun.net.httpserver.HttpExchange;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
@@ -29,7 +26,7 @@ public class HttpRequest implements Request {
 
     private Map<String, List<String>> headers = new HashMap<>();
 
-    private String requestBody = "";
+    private Map<String, String> requestBody = new HashMap<>();
 
     public HttpRequest(HttpExchange httpExchange) {
         this.httpExchange = httpExchange;
@@ -68,10 +65,7 @@ public class HttpRequest implements Request {
             return;
         }
 
-        String [] arrayStr = query.split("&");
-        for(String str : arrayStr){
-            params.put(str.split("=")[0], str.split("=")[1]);
-        }
+        params = parseParams(query);
     }
 
     @Override
@@ -79,24 +73,51 @@ public class HttpRequest implements Request {
         return params.get(param);
     }
 
-    // --- TODO post
     @Override
     public void initRequestBody() {
-        InputStream in = httpExchange.getRequestBody();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-        String temp;
-        try {
-            while ((temp = reader.readLine()) != null) {
-                requestBody += temp;
-            }
-        } catch (IOException e) {
 
+        InputStreamReader isr;
+        try {
+            isr = new InputStreamReader(httpExchange.getRequestBody());
+            BufferedReader br = new BufferedReader(isr);
+            String value = br.readLine();
+
+            if(value == null){
+                Log.warn("Body is null");
+                return;
+            }
+
+            requestBody = parseParams(value);
+        } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     @Override
-    public String getRequestBody() {
-        return requestBody;
+    public String getRequestBody(String key) {
+        return requestBody.get(key);
+    }
+
+    private Map<String, String> parseParams(String par){
+
+        String [] arrayStr = par.split("&");
+
+        Map<String, String> map = new HashMap<>();
+
+        for(String str : arrayStr){
+
+            if(str.split("=").length != 2){
+
+                Log.warn("Missing Data from client!!!");
+                continue;
+            }
+            String key = str.split("=")[0];
+            String value = str.split("=")[1];
+
+            map.put(key, value);
+            Log.debug(key + ": " + value);
+        }
+        return map;
     }
 }

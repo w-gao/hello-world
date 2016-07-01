@@ -12,7 +12,7 @@ import java.util.List;
 public interface Request {
 
     String GET = "GET";
-    //String POST = "POST"; // todo
+    String POST = "POST";
 
     URI getRequestURI();
 
@@ -29,7 +29,7 @@ public interface Request {
 
     void initRequestBody();
 
-    String getRequestBody();
+    String getRequestBody(String key);
 
 
 }

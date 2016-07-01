@@ -9,8 +9,4 @@ package main.java.helloworld.http.api;
 public interface Handler {
 
     void handle(Request request, Response response);
-
-    void get(Request req, Response res);
-
-    // todo more methods!
 }

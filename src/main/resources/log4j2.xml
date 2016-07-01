@@ -3,7 +3,7 @@
   <Appenders>
     <Console name="Console">
       <!--<PatternLayout pattern="%d{HH:mm:ss} [%t] [%c{1}:%L] %-5level - %msg%n"/>-->
-      <PatternLayout pattern="%d{HH:mm:ss} [%c{1}:%L] - %msg%n"/>
+      <PatternLayout pattern="%d{HH:mm:ss} [%c{1}:%L] - %msg%n" charset="GB2312" />
     </Console>
   </Appenders>
   <Loggers>

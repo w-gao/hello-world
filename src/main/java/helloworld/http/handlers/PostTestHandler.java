@@ -3,6 +3,8 @@ package main.java.helloworld.http.handlers;
 import main.java.helloworld.http.api.Request;
 import main.java.helloworld.http.api.Response;
 import main.java.helloworld.http.api.methods.PostHandler;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * hello-world
@@ -12,11 +14,13 @@ import main.java.helloworld.http.api.methods.PostHandler;
  */
 public class PostTestHandler extends PostHandler {
 
+    private static Logger Log = LogManager.getLogger(PostTestHandler.class);
+
     @Override
     public void post(Request req, Response res) {
 
-        System.out.println(req.getRequestBody("test"));
-        System.out.println(req.getRequestBody("blah"));
+        Log.debug(req.getRequestBody("test"));
+        Log.debug(req.getRequestBody("blah"));
 
         res.write("hia!");
     }

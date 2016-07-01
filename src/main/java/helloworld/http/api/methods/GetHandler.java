@@ -21,8 +21,8 @@ public abstract class GetHandler implements Handler {
 
             get(request, response);
 
-        }catch (Exception ex){
-            response.write("An error occurred:", 500);
+        } catch (Exception ex) {
+            response.write("An error occurred", 500);
 
             ex.printStackTrace();
         }

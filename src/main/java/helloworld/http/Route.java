@@ -1,6 +1,8 @@
 package main.java.helloworld.http;
 
-import main.java.helloworld.http.handlers.*;
+import main.java.helloworld.http.handlers.HelloHandler;
+import main.java.helloworld.http.handlers.PostTestHandler;
+import main.java.helloworld.http.handlers.TestHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,7 +27,7 @@ public class Route {
             get("/test", new TestHandler());
 
             post("/post", new PostTestHandler());
-        }catch (Exception ex){
+        } catch (Exception ex) {
 
             Log.error("Error!" + ex.getMessage());
         }

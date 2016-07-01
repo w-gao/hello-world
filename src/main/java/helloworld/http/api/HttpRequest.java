@@ -4,7 +4,9 @@ import com.sun.net.httpserver.HttpExchange;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
@@ -45,13 +47,13 @@ public class HttpRequest implements Request {
     @Override
     public void initHeader() {
 
-        for(String s : httpExchange.getRequestHeaders().keySet()){
+        for (String s : httpExchange.getRequestHeaders().keySet()) {
             headers.put(s, httpExchange.getRequestHeaders().get(s));
         }
     }
 
     @Override
-    public List<String> getHeader(String key){
+    public List<String> getHeader(String key) {
 
         return headers.get(key);
     }
@@ -60,7 +62,7 @@ public class HttpRequest implements Request {
     public void initParam() {
         String query = getRequestURI().getQuery();
 
-        if(query == null){
+        if (query == null) {
             Log.warn("Param is null");
             return;
         }
@@ -82,7 +84,7 @@ public class HttpRequest implements Request {
             BufferedReader br = new BufferedReader(isr);
             String value = br.readLine();
 
-            if(value == null){
+            if (value == null) {
                 Log.warn("Body is null");
                 return;
             }
@@ -99,15 +101,15 @@ public class HttpRequest implements Request {
         return requestBody.get(key);
     }
 
-    private Map<String, String> parseParams(String par){
+    private Map<String, String> parseParams(String par) {
 
-        String [] arrayStr = par.split("&");
+        String[] arrayStr = par.split("&");
 
         Map<String, String> map = new HashMap<>();
 
-        for(String str : arrayStr){
+        for (String str : arrayStr) {
 
-            if(str.split("=").length != 2){
+            if (str.split("=").length != 2) {
 
                 Log.warn("Missing Data from client!!!");
                 continue;

@@ -14,12 +14,12 @@ public class BaseLang {
     private static Map<String, String> langs = new HashMap<>();
 
     // todo load from files?
-    public BaseLang(){
+    public BaseLang() {
         langs.put("WELCOME_MSG", "Hello World!");
 
     }
 
-    public static String get(String key){
+    public static String get(String key) {
         return langs.get(key);
     }
 }

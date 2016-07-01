@@ -16,10 +16,10 @@ import java.io.InputStreamReader;
  */
 public class Main {
 
-    private static Logger Log = LogManager.getLogger(Main.class);
-
     private static final int HTTP_PORT = 8080;
     private static final int HTTP_MAX_CONN = 100;
+
+    private static Logger Log = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) {
 
@@ -45,7 +45,7 @@ public class Main {
         // -----------------------------------------
         try {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-            String s = br.readLine();
+            br.readLine();
         } catch (Exception ex) {
             // ignored
         }

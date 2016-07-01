@@ -22,20 +22,20 @@ public class HttpProvider {
 
     private HttpServer httpServer;
 
-    public HttpProvider(int port, int maxConn){
+    public HttpProvider(int port, int maxConn) {
         _port = port;
         _maxConn = maxConn;
     }
 
-    public void startService(){
+    public void startService() {
         Log.debug("Port: " + _port);
-        try{
+        try {
             HttpServerProvider provider = HttpServerProvider.provider();
             this.httpServer = provider.createHttpServer(new InetSocketAddress(_port), _maxConn);
             this.httpServer.createContext("/", new MainHandler());
             this.httpServer.setExecutor(null);
             this.httpServer.start();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             Log.error("Error!! Perhaps you are using that port?");
             System.exit(-1);
         }

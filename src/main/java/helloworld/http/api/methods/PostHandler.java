@@ -23,7 +23,7 @@ public abstract class PostHandler implements Handler {
 
             post(request, response);
 
-        }catch (Exception ex){
+        } catch (Exception ex) {
             response.write("An error occurred", 500);
 
             ex.printStackTrace();

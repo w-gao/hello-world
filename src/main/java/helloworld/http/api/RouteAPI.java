@@ -20,11 +20,11 @@ public class RouteAPI {
 
     private static Map<String, Handler> postRoutes = new HashMap<>();
 
-    public static void get(final String key, final Handler handler){
+    public static void get(final String key, final Handler handler) {
         getRoutes.put(key, handler);
     }
 
-    public static void post(final String key, final Handler handler){
+    public static void post(final String key, final Handler handler) {
         postRoutes.put(key, handler);
     }
 

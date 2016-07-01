@@ -19,12 +19,12 @@ public class HttpResponse implements Response {
 
     private HttpExchange httpExchange;
 
-    public HttpResponse(HttpExchange httpExchange){
+    public HttpResponse(HttpExchange httpExchange) {
         this.httpExchange = httpExchange;
     }
 
     @Override
-    public void write(String result){
+    public void write(String result) {
         write(result, 200);
     }
 

@@ -2,6 +2,7 @@ package main.java.helloworld.http.api;
 
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
+import main.java.helloworld.lang.Lang;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -26,7 +27,7 @@ public class HttpResponse implements Response {
 
     @Override
     public void write(Result result) {
-        Log.info("Return: '" + result.message + "'");
+        Log.debug(Lang.get("HTTP_SRV_RETURNED", result.message));
 
         Gson gson = new Gson();
         String json = gson.toJson(result);
@@ -39,7 +40,7 @@ public class HttpResponse implements Response {
             httpExchange.close();
         } catch (IOException e) {
 
-            Log.error("An error occurred: " + e.getMessage());
+            Log.error(Lang.get("GENERIC_ERROR_OCCURRED") + ": " + e.getMessage());
             //e.printStackTrace();
         }
     }

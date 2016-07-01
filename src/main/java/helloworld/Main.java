@@ -2,6 +2,7 @@ package main.java.helloworld;
 
 import main.java.helloworld.http.HttpProvider;
 import main.java.helloworld.http.Route;
+import main.java.helloworld.lang.Lang;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,24 +24,25 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Log.info("Hello World!");
+        new Lang();
 
+        Log.info(Lang.get("HELLO_WORLD", 1.0));
 
         initHttpServer();
     }
 
     private static void initHttpServer() {
 
-        Log.info("Starting http server...");
+        Log.info(Lang.get("HTTP_SRV_STARTING"));
 
         HttpProvider provider = new HttpProvider(HTTP_PORT, HTTP_MAX_CONN);
         provider.startService();
 
         new Route();
 
-        Log.info("Done.");
+        Log.info(Lang.get("HTTP_SRV_STARTED"));
 
-        Log.info("Press Enter to Stop...");
+        Log.info(Lang.get("HTTP_STOP_NOTICE"));
 
         // -----------------------------------------
         try {
@@ -51,7 +53,7 @@ public class Main {
         }
         // -----------------------------------------
 
-        Log.info("Stopping http server...");
+        Log.info(Lang.get("HTTP_SRV_STOPPING"));
         provider.stopHttpServer();
     }
 }

@@ -2,6 +2,7 @@ package main.java.helloworld.http;
 
 import com.sun.net.httpserver.HttpServer;
 import com.sun.net.httpserver.spi.HttpServerProvider;
+import main.java.helloworld.lang.Lang;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,7 +29,8 @@ public class HttpProvider {
     }
 
     public void startService() {
-        Log.debug("Port: " + _port);
+        Log.debug(Lang.get("HTTP_SRV_PORT", _port));
+
         try {
             HttpServerProvider provider = HttpServerProvider.provider();
             this.httpServer = provider.createHttpServer(new InetSocketAddress(_port), _maxConn);
@@ -36,7 +38,7 @@ public class HttpProvider {
             this.httpServer.setExecutor(null);
             this.httpServer.start();
         } catch (Exception ex) {
-            Log.error("Error!! Perhaps you are using that port?");
+            Log.error(Lang.get("GENERIC_ERROR_MSG", "Perhaps you are using that port?"));
             System.exit(-1);
         }
     }

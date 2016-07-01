@@ -4,6 +4,7 @@ import main.java.helloworld.http.api.Handler;
 import main.java.helloworld.http.api.Request;
 import main.java.helloworld.http.api.Response;
 import main.java.helloworld.http.api.Result;
+import main.java.helloworld.lang.Lang;
 
 /**
  * hello-world
@@ -23,7 +24,7 @@ public abstract class GetHandler implements Handler {
             get(request, response);
 
         } catch (Exception ex) {
-            response.write(new Result(500, "An error occurred"));
+            response.write(new Result(500, Lang.get("GENERIC_ERROR_OCCURRED")));
 
             ex.printStackTrace();
         }

@@ -3,6 +3,7 @@ package main.java.helloworld.http;
 import main.java.helloworld.http.handlers.HelloHandler;
 import main.java.helloworld.http.handlers.PostTestHandler;
 import main.java.helloworld.http.handlers.TestHandler;
+import main.java.helloworld.lang.Lang;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -29,7 +30,7 @@ public class Route {
             post("/post", new PostTestHandler());
         } catch (Exception ex) {
 
-            Log.error("Error!" + ex.getMessage());
+            Log.error(Lang.get("GENERIC_ERROR_Ex", ex.getMessage()));
         }
     }
 

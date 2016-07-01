@@ -1,6 +1,7 @@
 package main.java.helloworld.http.api;
 
 import com.sun.net.httpserver.HttpExchange;
+import main.java.helloworld.lang.Lang;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -111,7 +112,7 @@ public class HttpRequest implements Request {
 
             if (str.split("=").length != 2) {
 
-                Log.warn("Missing Data from client!!!");
+                Log.warn(Lang.get("HTTP_SRV_MISSING_DATA"));
                 continue;
             }
             String key = str.split("=")[0];

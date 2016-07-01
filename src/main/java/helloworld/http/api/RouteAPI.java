@@ -1,5 +1,6 @@
 package main.java.helloworld.http.api;
 
+import main.java.helloworld.lang.Lang;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -29,14 +30,14 @@ public class RouteAPI {
     }
 
     public static Handler get(String method, String key) {
+
         switch (method) {
             case Request.GET:
                 return getRoutes.get(key);
             case Request.POST:
                 return postRoutes.get(key);
-
             default:
-                Log.warn("Unrecognized method '" + method + "'");
+                Log.warn(Lang.get("HTTP_ROUTE_METHOD_NOT_FOUND", method));
                 return null;
         }
     }

@@ -2,6 +2,7 @@ package main.java.helloworld.http.handlers;
 
 import main.java.helloworld.http.api.Request;
 import main.java.helloworld.http.api.Response;
+import main.java.helloworld.http.api.Result;
 import main.java.helloworld.http.api.methods.PostHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,6 +23,6 @@ public class PostTestHandler extends PostHandler {
         Log.debug(req.getRequestBody("test"));
         Log.debug(req.getRequestBody("blah"));
 
-        res.write("hia!");
+        res.write(new Result("hia!"));
     }
 }

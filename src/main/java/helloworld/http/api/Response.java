@@ -8,7 +8,5 @@ package main.java.helloworld.http.api;
  */
 public interface Response {
 
-    void write(String result);
-
-    void write(String result, int statusCode);
+    void write(Result result);
 }

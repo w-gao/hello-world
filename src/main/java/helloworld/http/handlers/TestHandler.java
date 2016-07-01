@@ -2,6 +2,7 @@ package main.java.helloworld.http.handlers;
 
 import main.java.helloworld.http.api.Request;
 import main.java.helloworld.http.api.Response;
+import main.java.helloworld.http.api.Result;
 import main.java.helloworld.http.api.methods.GetHandler;
 
 import java.math.BigInteger;
@@ -20,6 +21,6 @@ public class TestHandler extends GetHandler {
     @Override
     public void get(Request request, Response response) {
 
-        response.write(new BigInteger(130, random).toString(32));
+        response.write(new Result(new BigInteger(130, random).toString(32)));
     }
 }

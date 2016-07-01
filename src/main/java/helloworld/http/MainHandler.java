@@ -3,10 +3,7 @@ package main.java.helloworld.http;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import main.java.helloworld.http.api.Handler;
-import main.java.helloworld.http.api.HttpRequest;
-import main.java.helloworld.http.api.HttpResponse;
-import main.java.helloworld.http.api.RouteAPI;
+import main.java.helloworld.http.api.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -41,7 +38,7 @@ class MainHandler implements HttpHandler {
         Log.info(request.getMethod());
 
         if (handler == null) {
-            response.write("404 - Not found");
+            response.write(new Result(404, "Not found"));
             return;
         }
         handler.handle(request, response);

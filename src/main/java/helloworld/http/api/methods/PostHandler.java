@@ -3,6 +3,7 @@ package main.java.helloworld.http.api.methods;
 import main.java.helloworld.http.api.Handler;
 import main.java.helloworld.http.api.Request;
 import main.java.helloworld.http.api.Response;
+import main.java.helloworld.http.api.Result;
 
 /**
  * hello-world
@@ -24,7 +25,7 @@ public abstract class PostHandler implements Handler {
             post(request, response);
 
         } catch (Exception ex) {
-            response.write("An error occurred", 500);
+            response.write(new Result(500, "An error occurred"));
 
             ex.printStackTrace();
         }

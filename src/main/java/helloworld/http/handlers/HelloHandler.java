@@ -2,6 +2,7 @@ package main.java.helloworld.http.handlers;
 
 import main.java.helloworld.http.api.Request;
 import main.java.helloworld.http.api.Response;
+import main.java.helloworld.http.api.Result;
 import main.java.helloworld.http.api.methods.GetHandler;
 
 /**
@@ -19,6 +20,6 @@ public class HelloHandler extends GetHandler {
         if (request.getParam("user") != null) {
             name = request.getParam("user");
         }
-        response.write("Hello " + name + "!");
+        response.write(new Result("Hello " + name + "!"));
     }
 }

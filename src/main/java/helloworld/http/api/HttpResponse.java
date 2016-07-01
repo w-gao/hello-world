@@ -1,5 +1,6 @@
 package main.java.helloworld.http.api;
 
+import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,18 +25,16 @@ public class HttpResponse implements Response {
     }
 
     @Override
-    public void write(String result) {
-        write(result, 200);
-    }
+    public void write(Result result) {
+        Log.info("Return: '" + result.message + "'");
 
-    @Override
-    public void write(String result, int statusCode) {
-        Log.info("Return: '" + result + "'");
+        Gson gson = new Gson();
+        String json = gson.toJson(result);
 
         try {
-            httpExchange.sendResponseHeaders(200, result.length());
+            httpExchange.sendResponseHeaders(200, json.length());
             OutputStream out = httpExchange.getResponseBody();
-            out.write(result.getBytes());
+            out.write(json.getBytes());
             out.flush();
             httpExchange.close();
         } catch (IOException e) {

@@ -16,11 +16,11 @@ import static main.java.helloworld.http.api.RouteAPI.post;
  * @author w-gao Copyright (c) 2016
  * @version 1.0
  */
-public class Route {
+class Route {
 
     private static Logger Log = LogManager.getLogger(Route.class);
 
-    public Route() {
+    Route() {
 
         try {
             // init

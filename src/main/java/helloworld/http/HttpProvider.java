@@ -14,7 +14,7 @@ import java.net.InetSocketAddress;
  * @author w-gao Copyright (c) 2016
  * @version 1.0
  */
-public class HttpProvider {
+class HttpProvider {
 
     private static Logger Log = LogManager.getLogger(HttpProvider.class);
 
@@ -23,13 +23,13 @@ public class HttpProvider {
 
     private HttpServer httpServer;
 
-    public HttpProvider(int port, int maxConn) {
+    HttpProvider(int port, int maxConn) {
         _port = port;
         _maxConn = maxConn;
     }
 
-    public void startService() {
-        Log.debug(Lang.get("HTTP_SRV_PORT", _port));
+    void startService() {
+        Log.debug(Lang.get("HTTP_SRV_INFO", _port, _maxConn));
 
         try {
             HttpServerProvider provider = HttpServerProvider.provider();
@@ -43,7 +43,7 @@ public class HttpProvider {
         }
     }
 
-    public void stopHttpServer() {
+    void stopHttpServer() {
         if (this.httpServer != null) {
             this.httpServer.stop(0);
         }

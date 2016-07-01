@@ -59,7 +59,6 @@ public class Lang {
                 }
                 lang.put(key, value);
             }
-
             langs = lang;
         } catch (IOException e) {
             Log.warn("Error while loading language: " + e.getMessage());

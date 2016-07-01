@@ -7,8 +7,10 @@ package main.java.helloworld.http.api;
  * @version 1.0
  */
 public class Result {
-    int code = 200;
+
+    private int code = 200;
     String message;
+
     static final long time = System.currentTimeMillis();
 
     public Result(String message) {

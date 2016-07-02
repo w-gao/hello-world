@@ -29,15 +29,27 @@ class HttpResponse implements Response {
 
     @Override
     public void write(Result result) {
-        if(Log.isDebugEnabled()) Log.debug(Lang.get("HTTP_SRV_RETURNED", result.getMessage()));
 
         Gson gson = new Gson();
         String json = gson.toJson(result);
 
+        write(result.getCode(), json);
+    }
+
+    @Override
+    public void write(String result){
+        write(200, result);
+    }
+
+    @Override
+    public void write(int code, String result){
+
+        if(Log.isDebugEnabled()) Log.debug(Lang.get("HTTP_SRV_RETURNED", result));
+
         try {
-            httpExchange.sendResponseHeaders(result.getCode(), json.length());
+            httpExchange.sendResponseHeaders(code, result.length());
             OutputStream out = httpExchange.getResponseBody();
-            out.write(json.getBytes());
+            out.write(result.getBytes());
             out.flush();
             httpExchange.close();
         } catch (IOException e) {

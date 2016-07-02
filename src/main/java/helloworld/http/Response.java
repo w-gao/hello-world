@@ -11,4 +11,8 @@ import main.java.helloworld.http.api.Result;
 public interface Response {
 
     void write(Result result);
+
+    void write(String result);
+
+    void write(int code, String result);
 }

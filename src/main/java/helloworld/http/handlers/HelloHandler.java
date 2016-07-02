@@ -20,6 +20,6 @@ public class HelloHandler extends GetHandler {
         if (request.getParam("user") != null) {
             name = request.getParam("user");
         }
-        response.write(new Result("Hello " + name + "!"));
+        response.write("Hello " + name + "!");
     }
 }

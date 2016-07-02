@@ -11,8 +11,6 @@ public class Result {
     private int code = 200;
     private String message;
 
-    static final long time = System.currentTimeMillis();
-
     public Result(String message) {
         this(200, message);
     }

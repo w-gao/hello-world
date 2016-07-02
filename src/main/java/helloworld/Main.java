@@ -25,10 +25,10 @@ public class Main {
 
         Log.info(Lang.get("HELLO_WORLD", 1.0));
 
-        if(Config.getPropertyBoolean("enable-http", false)){
+        if(Config.getPropertyBoolean("EnableHttp", false)){
 
-            int port = Config.getPropertyInt("http-port", 8080);
-            int maxConn = Config.getPropertyInt("http-max-conn", 100);
+            int port = Config.getPropertyInt("HttpPort", 8080);
+            int maxConn = Config.getPropertyInt("HttpMaxConn", 100);
 
             new HttpServer(port, maxConn);
         }

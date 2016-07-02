@@ -70,14 +70,14 @@ public class Config {
         }
     }
 
-    private static String getProperty(String key){
+    public static String getProperty(String key){
 
         return getProperty(key, "");
     }
 
     private static String getProperty(String key, String defaultValue){
 
-        if(properties == null) return "";
+        if(properties == null) return "null";
 
         return properties.getProperty(key, defaultValue);
     }

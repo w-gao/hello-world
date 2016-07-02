@@ -1,5 +1,6 @@
 package main.java.helloworld.http.handlers;
 
+import main.java.helloworld.http.NotAuthorizedResult;
 import main.java.helloworld.http.Request;
 import main.java.helloworld.http.Response;
 import main.java.helloworld.http.api.Result;
@@ -20,6 +21,11 @@ public class TestHandler extends GetHandler {
 
     @Override
     public void get(Request request, Response response) {
+
+        if(!verify(request)) {
+            response.write(new NotAuthorizedResult());
+            return;
+        }
 
         response.write(new Result(new BigInteger(130, random).toString(32)));
     }

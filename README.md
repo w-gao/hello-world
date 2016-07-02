@@ -4,7 +4,7 @@ Hello World!
 This project is for testing & studying.
 
 ###TO-DO List
-> 1. Permissions
+<s>1. Permissions </s>
 
 <s>2. Add settings, more user friendly</s>
 

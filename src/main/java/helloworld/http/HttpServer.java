@@ -1,6 +1,8 @@
 package main.java.helloworld.http;
 
+import main.java.helloworld.http.api.AuthAPI;
 import main.java.helloworld.lang.Lang;
+import main.java.helloworld.utils.Config;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,9 +24,17 @@ public class HttpServer {
         Log.info(Lang.get("HTTP_SRV_STARTING"));
 
         HttpProvider provider = new HttpProvider(port, maxConn);
-        provider.startService();
 
         new Route();
+
+        if(Config.getPropertyBoolean("HttpEnableSecurity", false)){
+
+            String key = Config.getProperty("HttpAuthKey");
+            AuthAPI.setToken(key);
+            Log.info(Lang.get("HTTP_SET_KEY", key));
+        }
+
+        provider.startService();
 
         Log.info(Lang.get("HTTP_SRV_STARTED") + " " + Lang.get("HTTP_STOP_NOTICE"));
 

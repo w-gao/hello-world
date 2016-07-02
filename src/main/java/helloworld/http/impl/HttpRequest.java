@@ -51,7 +51,7 @@ class HttpRequest implements Request {
 
         for (String s : httpExchange.getRequestHeaders().keySet()) {
 
-            Log.debug(s + "=" + httpExchange.getRequestHeaders().get(s));
+            //Log.debug(s + "=" + httpExchange.getRequestHeaders().get(s));
             headers.put(s, httpExchange.getRequestHeaders().get(s));
         }
     }

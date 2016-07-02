@@ -30,8 +30,6 @@ public class MainHandler implements HttpHandler {
 
         Log.info(Lang.get("HTTP_SRV_REQUEST", key, httpExchange.getRemoteAddress().getHostName()));
 
-        // TODO PERMISSIONS!!
-
         HttpRequest request = new HttpRequest(httpExchange);
         HttpResponse response = new HttpResponse(httpExchange);
 

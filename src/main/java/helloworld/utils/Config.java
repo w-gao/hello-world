@@ -26,7 +26,7 @@ public class Config {
         String path = System.getProperty("user.dir") + "/" + ConfigFile;
         File file = new File(path);
         if (!file.exists()) {
-            Log.debug(ConfigFile + " does not exist. Creating...");
+            if(Log.isDebugEnabled()) Log.debug(ConfigFile + " does not exist. Creating...");
             try {
                 InputStream stream = this.getClass().getClassLoader().getResourceAsStream(ConfigFile);
                 FileUtil.writeFile(file, stream);
@@ -35,7 +35,7 @@ public class Config {
                 ex.printStackTrace();
                 return;
             }
-            Log.debug(ConfigFile + " created!");
+            if(Log.isDebugEnabled()) Log.debug(ConfigFile + " created!");
         }
 
         // load properties...

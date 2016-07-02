@@ -35,7 +35,7 @@ public class MainHandler implements HttpHandler {
 
         Handler handler = RouteAPI.get(request.getMethod(), key);
 
-        Log.info(request.getMethod());
+        if(Log.isDebugEnabled()) Log.info(request.getMethod());
 
         if (handler == null) {
             response.write(new Result(404, Lang.get("GENERIC_NOT_FOUND")));

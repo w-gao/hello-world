@@ -6,6 +6,7 @@ import main.java.helloworld.http.Response;
 import main.java.helloworld.http.api.AuthAPI;
 import main.java.helloworld.http.api.Result;
 import main.java.helloworld.lang.Lang;
+import main.java.helloworld.utils.Config;
 
 /**
  * hello-world
@@ -34,7 +35,8 @@ public abstract class PostHandler implements Handler {
     }
 
     protected boolean verify(Request request) {
-        return AuthAPI.verify(request.getHeader("Auth_key").get(0));
+        return !Config.getPropertyBoolean("HttpEnableSecurity", false) || AuthAPI.verify(request.getHeader("Auth_key").get(0));
+
     }
 
     protected abstract void post(Request req, Response res);

@@ -20,8 +20,8 @@ public class PostTestHandler extends PostHandler {
     @Override
     public void post(Request req, Response res) {
 
-        Log.debug(req.getHeader("Accept-Language"));
-        Log.debug(req.getRequestBody("blah"));
+        if(Log.isDebugEnabled()) Log.debug(req.getHeader("Accept-Language"));
+        if(Log.isDebugEnabled()) Log.debug(req.getRequestBody("blah"));
 
         res.write(new Result("hia! - " + req.getHeader("Authorization")));
     }

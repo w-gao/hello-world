@@ -29,7 +29,7 @@ class HttpResponse implements Response {
 
     @Override
     public void write(Result result) {
-        Log.debug(Lang.get("HTTP_SRV_RETURNED", result.getMessage()));
+        if(Log.isDebugEnabled()) Log.debug(Lang.get("HTTP_SRV_RETURNED", result.getMessage()));
 
         Gson gson = new Gson();
         String json = gson.toJson(result);

@@ -67,7 +67,7 @@ class HttpRequest implements Request {
         String query = getRequestURI().getQuery();
 
         if (query == null) {
-            Log.warn("Param is null");
+            if(Log.isDebugEnabled()) Log.warn("Param is null");
             return;
         }
 
@@ -89,7 +89,7 @@ class HttpRequest implements Request {
             String value = br.readLine();
 
             if (value == null) {
-                Log.warn("Body is null");
+                if(Log.isDebugEnabled()) Log.warn("Body is null");
                 return;
             }
 
@@ -115,7 +115,7 @@ class HttpRequest implements Request {
 
             if (str.split("=").length != 2) {
 
-                Log.warn(Lang.get("HTTP_SRV_MISSING_DATA"));
+                if(Log.isDebugEnabled()) Log.warn(Lang.get("HTTP_SRV_MISSING_DATA"));
                 continue;
             }
             String key = str.split("=")[0];

@@ -39,7 +39,7 @@ public class RouteAPI {
             case Request.POST:
                 return postRoutes.get(key);
             default:
-                Log.warn(Lang.get("HTTP_ROUTE_METHOD_NOT_FOUND", method));
+                if(Log.isDebugEnabled()) Log.warn(Lang.get("HTTP_ROUTE_METHOD_NOT_FOUND", method));
                 return null;
         }
     }

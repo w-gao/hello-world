@@ -8,7 +8,17 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
+ *     ___ ___         .__  .__                    __      __            .__       .___
+ *   /   |   \   ____ |  | |  |   ____           /  \    /  \___________|  |    __| _/
+ *  /    ~    \_/ __ \|  | |  |  /  _ \   ______ \   \/\/   /  _ \_  __ \  |   / __ |
+ *  \    Y    /\  ___/|  |_|  |_(  <_> ) /_____/  \        (  <_> )  | \/  |__/ /_/ |
+ *  \___|_  /  \___  >____/____/\____/            \__/\  / \____/|__|  |____/\____ |
+ */
+
+/**
  * hello-world
+ *
+ * Project's entry
  *
  * @author w-gao Copyright (c) 2016
  * @version 1.0
